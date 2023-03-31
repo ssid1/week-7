@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Socket.IO p5 Multi-Player</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="p5.js"></script>
+  <script src="sketch.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <div id="sketch-container" class="page hide">
+      <div id="gui-container" class="chatArea">
+        <div class="message-scroll">
+          <div class="messages"></div>
+        </div>
+        <!-- <input class="inputMessage" placeholder="Type here..."/> -->
+      </div>
+    </div>
+    <div id="login" class="page">
+      <div id="login-form">
+        <h3 class="title">What's your nickname?</h3>
+        <!-- <input class="usernameInput" type="text" maxlength="14" /> -->
+      </div> 
+    </div>
+  </main>
+</body>
+</html>
