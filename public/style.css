@@ -1,25 +1,210 @@
-/* a minimalist set of CSS resets */
+/* Fix user-agent */
 
-/* default to border-box */
-html {
+* {
   box-sizing: border-box;
-  font-size: 16px;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
+html {
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* adjust typography defaults */
-body {
-  margin: 1rem;
-  font-family: sans-serif;
-  line-height: 1.5;
+canvas {
+  display: block;
 }
 
-/* images and videos max out at full width */
-img,
-video {
-  height: auto;
-  max-width: 100%;
+body{
+  background: white;
+}
+
+main{
+  position:fixed;
+  width: 100%;
+  height:100%;
+}
+
+#sketch-container{
+  width: 100%;
+  height: 100%;
+}
+
+#gui-container{
+  position: fixed;
+  top: 0;
+  left: -40%;
+  z-index: 100;
+  width: 40%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255, 0.9);
+  transition: all .3s;
+}
+
+#gui-container.open{
+  left: 0px;
+}
+
+/*styled button */
+#gui-container .button{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  right: -40px;
+  top:20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border:transparent;
+  box-sizing: border-box;
+  color: #383643;
+  /* padding: 15px 20px; */
+  position: absolute;
+  font-size: 25px;
+  cursor: pointer;
+}
+#gui-container .button:hover{
+  color: grey;
+}
+
+#gui-container.open .button{
+  transform: scale(-1,1);
+}
+
+
+html, input {
+  font-family:
+    "HelveticaNeue-Light",
+    "Helvetica Neue Light",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    "Lucida Grande",
+    sans-serif;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  word-wrap: break-word;
+}
+
+/* Pages */
+
+.pages {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.page {
+  height: 100%;
+  position: fixed;
+  width: 100%;
+}
+
+/* Login Page */
+
+#login.page {
+  background-color: #000;
+}
+
+#login.page #login-form{
+  height: 100px;
+  margin-top: -100px;
+  position: absolute;
+
+  text-align: center;
+  top: 50%;
+  width: 100%;
+}
+
+#login.page #login-form .usernameInput {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #fff;
+  outline: none;
+  padding-bottom: 15px;
+  text-align: center;
+  width: 400px;
+}
+
+#login.page .title {
+  font-size: 200%;
+}
+
+#login.page .usernameInput {
+  font-size: 200%;
+  letter-spacing: 3px;
+}
+
+#login.page .title, #login.page .usernameInput {
+  color: #fff;
+  font-weight: 100;
+}
+
+.page.hide{
+  display: none;
+}
+
+
+/* Font */
+
+.inputMessage {
+  font-size: 90%;
+}
+
+.log {
+  color: gray;
+  font-size: 70%;
+  margin: 5px;
+  text-align: center;
+}
+
+/* Messages */
+
+.chatArea {
+  height: 100%;
+  padding-bottom: 60px;
+}
+
+.message-scroll {
+  display: flex;
+  flex-direction: column-reverse;/*so that our message stick to the bottom of the message area*/
+  font-size: 150%;
+  margin: 0;
+  height: 100%;
+  overflow-y: scroll;/*so that our messages scroll when there are too many to fit in the window*/
+  padding: 0px 15px 60px 15px;
+}
+
+.message.typing .messageBody {
+  color: gray;
+}
+
+.username {
+  font-weight: 700;
+  overflow: hidden;
+  padding-right: 15px;
+  text-align: right;
+}
+
+/* Input */
+
+.inputMessage {
+  border: 10px solid #4b4b4b;
+  bottom: 0;
+  height: 60px;
+  left: 0;
+  outline: none;
+  padding-left: 10px;
+  position: absolute;
+  right: 0;
+  width: 100%;
 }

@@ -1,54 +1,40 @@
-const path = require("path");
+// Import Libraries and Setup
 
-// Require the fastify framework and instantiate it
-const fastify = require("fastify")({
-  // set this to true for detailed logging:
-  logger: false,
+const express = require("express");
+const app = express();
+const http = require("http");
+const server = require('http').Server(app); //??!
+const { Server } = require("socket.io");
+const io = new Server(server);
+
+// Tell our Node.js Server to host our P5.JS sketch from the public folder.
+app.use(express.static("public"));
+io.connect( "/" );
+
+
+// Setup Our Node.js server to listen to connections from chrome, and open chrome when it is ready
+server.listen(3000, () => {
+  console.log("listening on *:3000");
 });
 
-// Setup our static files
-fastify.register(require("@fastify/static"), {
-  root: path.join(__dirname, "public"),
-  prefix: "/", // optional: default '/'
-});
+let printEveryMessage = false; 
 
-// fastify-formbody lets us parse incoming forms
-fastify.register(require("@fastify/formbody"));
 
-// point-of-view is a templating manager for fastify
-fastify.register(require("@fastify/view"), {
-  engine: {
-    handlebars: require("handlebars"),
-  },
-});
 
-// Our main GET home page route, pulls from src/pages/index.hbs
-fastify.get("/", function (request, reply) {
-  // params is an object we'll pass to our handlebars template
-  let params = {
-    greeting: "Hello Node!",
-  };
-  // request.query.paramName <-- a querystring example
-  return reply.view("/src/pages/index.hbs", params);
-});
+// Callback function for what to do when our P5.JS sketch connects and sends us messages
+io.on("connection", (socket) => {
+  console.log("a user connected");
 
-// A POST route to handle form submissions
-fastify.post("/", function (request, reply) {
-  let params = {
-    greeting: "Hello Form!",
-  };
-  // request.body.paramName <-- a form post example
-  return reply.view("/src/pages/index.hbs", params);
-});
-
-// Run the server and report out to the logs
-fastify.listen(
-  { port: process.env.PORT, host: "0.0.0.0" },
-  function (err, address) {
-    if (err) {
-      console.error(err);
-      process.exit(1);
+//add in data 
+  socket.on("data",(data) => {
+    //do some stuff
+   
+    socket.broadcast.emit("data",data);
+    
+    if (printEveryMessage) {
+      console.log(data);
     }
-    console.log(`Your app is listening on ${address}`);
-  }
-);
+  });
+
+
+});
