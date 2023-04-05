@@ -49,6 +49,14 @@ function draw() {
     text("x: " + x, 25, 25);
     text("y: " + y, 25, 50);
     text("z: " + z, 25, 75); 
+  
+  let message = {
+    xPos: x,
+    yPos: y,
+    zPos: z,
+  }
+  
+  socket.emit('new message', message)
 }
 
 //Events we are listening for
