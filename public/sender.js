@@ -12,7 +12,6 @@ function setup() {
   canvas = createCanvas(500, 500);
     
   //set styling for the sketch
-  background(255);
   noStroke();
 
   xpos = 200;
@@ -31,6 +30,7 @@ window.addEventListener('devicemotion', function(e)
 });
 
 function draw() {
+  background(255);
 
   
   // add/subract xpos and ypos
