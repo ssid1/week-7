@@ -7,16 +7,16 @@ function setup() {
   
   input = 0;
   
-  socket.on("data", newMsg);
+  socket.on("message", newMsg);
 
   function newMsg(data) {
-    input = Int32Array(data);
-    console.log(input);
+    input = data;
+    console.log(data);
   }
 }
 
 function draw() { 
   print(input);
-  text(input, width/2, height/2);
+  text(data, width/2, height/2);
 
 }

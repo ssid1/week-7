@@ -50,13 +50,13 @@ function draw() {
     text("y: " + y, 25, 50);
     text("z: " + z, 25, 75); 
   
-  let message = {
+  let data = {
     xPos: x,
     yPos: y,
     zPos: z,
   }
   
-  socket.emit('new message', message)
+  socket.emit('message', data)
 }
 
 //Events we are listening for
