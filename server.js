@@ -29,7 +29,7 @@ io.on("connection", (socket) => {
 
     // Print it to the Console
     if (printEveryMessage) {
-      console.log(data);
+      socket.broadcast.emit(data);
     }
   });
 });

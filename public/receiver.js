@@ -2,8 +2,7 @@ const socket = io();
 let input;
 
 function setup() {
-  createCanvas(100, 100);
-  background( 'pink' );
+  createCanvas(500, 500);
   
   input = 0;
   
@@ -11,12 +10,16 @@ function setup() {
 
   function newMsg(data) {
     input = data;
-    console.log(data);
+    // console.log(data);
   }
 }
 
 function draw() { 
+  background( 'pink' );
+  
   print(input);
-  text(data, width/2, height/2);
+  text(input.xPos, width/2, height/4);
+  text(input.yPos, width/2, height/2);
+  text(input.zPos, width/2, height *3/4);
 
 }
