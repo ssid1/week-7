@@ -1,12 +1,31 @@
 // Create connection to Node.JS Server
 const socket = io();
 
-let bSize = 10;
+
+let loginPage;        // The login page // '.login.page'
+let experiencePage;        // The main experience //'.experience.page'
+
 let canvas;
+let gui; 
+
+//input DOM elements
+let usernameInput; // Input for username // '.usernameInput'
+let inputMessage;   // Input message input box //'.inputMessage'
+let messageArea;    // Messages area // '.messages'
+
+// Prompt for setting a username
+let username;
+let connected = false;
+let typing = false;
+let lastTypingTime;
+
+//going to store which text field we listen to
+let currentInput; // focus usernameInput fist
+
+
 let drawIsOn = false;
 
 var x, y, z;
-var xpos, ypos;
 
 function setup() {
   canvas = createCanvas(500, 500);
@@ -109,6 +128,56 @@ function setUsername(){
     // Tell the server your username
     socket.emit('add user', username);
   }
+  
+}
+
+function sendMessage(){
+  let message = inputMessage.value();
+  // Prevent markup from being injected into the message
+  message = cleanInput(message);
+  // if there is a non-empty message and a socket connection
+  if (message && connected) {
+    inputMessage.value('');
+    addChatMessage({ username, message });
+    // tell server to execute 'new message' and send along one parameter
+    socket.emit('new message', message);
+  }
+}
+
+
+function usernameInputEvent(){
+  console.log(this.value());
+}
+
+function chatInputEvent(){
+  console.log(this.value());
+}
+
+function getUsernameColor(username){
+  // Compute hash code
+  let hash = 7;
+  for (let i = 0; i < username.length; i++) {
+    hash = username.charCodeAt(i) + (hash << 5) - hash;
+  }
+  // Calculate color
+  const index = Math.abs(hash % COLORS.length);
+  return COLORS[index];
+}
+
+//Events we are listening for
+
+function keyPressed(){
+  if (keyCode === ENTER) {
+    if (username) {
+      sendMessage();
+      socket.emit('stop typing');
+      typing = false;
+    } else {
+      setUsername();
+    }
+  }
+  console.log(username);
+  
 }
 
 function usernameInputEvent(){
@@ -119,8 +188,10 @@ function chatInputEvent(){
   console.log(this.value());
 }
 
-
-
+function handleButtonPress()
+{
+    gui.toggleClass("open");
+}
 
 
 
