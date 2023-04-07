@@ -23,21 +23,9 @@ io.on("connection", (socket) => {
   
   
   
-  console.log("a user connected");
-
-  // Code to run every time we get a message from front-end P5.JS
-  socket.on("message", (data) => {
-
-    //do something
-    socket.broadcast.emit('message', data);//broadcast.emit means send to everyone but the sender
-
-    // Print it to the Console
-    if (printEveryMessage) {
-      socket.broadcast.emit(data);
-    }
-  });
+  // console.log("a user connected");
   
-    // when the client emits 'add user', this listens and executes
+      // when the client emits 'add user', this listens and executes
   socket.on('add user', (username) => {
     // console.log(username);
     if (addedUser) return;
@@ -55,6 +43,22 @@ io.on("connection", (socket) => {
       numUsers: numUsers
     });
   });
+  
+  // Code to run every time we get a message from front-end P5.JS
+  socket.on("message", (data) => {
+
+    //do something
+    socket.broadcast.emit('message', data);//broadcast.emit means send to everyone but the sender
+    socket.broadcast.emit('username', socket.username);
+
+    
+    // Print it to the Console
+    if (printEveryMessage) {
+      socket.broadcast.emit(data);
+    }
+  });
+  
+
 
   // when the client emits 'typing', we broadcast it to others
   socket.on('typing', () => {

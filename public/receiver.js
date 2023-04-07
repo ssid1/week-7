@@ -1,5 +1,6 @@
 const socket = io();
-let canvas, input;
+let canvas, input, username;
+
 
 let startButton;
 
@@ -18,7 +19,7 @@ function setup() {
 function draw() { 
   background( 'pink' );
   
-  print(input);
+  print(username);
   text(input.xPos, width/2, height/4);
   text(input.yPos, width/2, height/2);
   text(input.zPos, width/2, height *3/4);
@@ -26,11 +27,17 @@ function draw() {
 }
 
 function receiveAccel() {
-    socket.on("message", newMsg);
+    socket.on("message", newData);
+    socket.on("username", newUser);
 
 
-  function newMsg(data) {
+  function newData(data) {
     input = data;
+    // console.log(data);
+  }
+  
+  function newUser(data) {
+    username = data;
     // console.log(data);
   }
 }
