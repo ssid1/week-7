@@ -45,6 +45,10 @@ io.on("connection", (socket) => {
       username: socket.username,
       numUsers: numUsers,
     });
+    
+  }, (data) => {
+    socket.broadcast.emit("connected", numUsers); //broadcast.emit means send to everyone but the sender
+    
   });
 
   // Code to run every time we get a message from front-end P5.JS
@@ -52,8 +56,8 @@ io.on("connection", (socket) => {
     
     
     //do something
-    socket.broadcast.emit("message", { accelData: data, username: socket.username }); //broadcast.emit means send to everyone but the sender
-    console.log(socket.username);
+    socket.broadcast.emit("message", { accelData: data, username: socket.username, users: numUsers }); //broadcast.emit means send to everyone but the sender
+    console.log(numUsers);
 
     // Print it to the Console
     if (printEveryMessage) {
