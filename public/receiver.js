@@ -19,27 +19,25 @@ function setup() {
 function draw() { 
   background( 'pink' );
   
-  print(username);
-  text(input.xPos, width/2, height/4);
-  text(input.yPos, width/2, height/2);
-  text(input.zPos, width/2, height *3/4);
+  // print(username);
+  // text(username, width/2, height/5);
+  // text(input.xPos, width/2, height/4);
+  // text(input.yPos, width/2, height/2);
+  // text(input.zPos, width/2, height *3/4);
 
 }
 
 function receiveAccel() {
     socket.on("message", newData);
-    socket.on("username", newUser);
 
 
   function newData(data) {
-    input = data;
-    // console.log(data);
+    input = data.accelData;
+    username = data.username;
+    // console.log(username);
+    // console.log(input);
   }
-  
-  function newUser(data) {
-    username = data;
-    // console.log(data);
-  }
+
 }
 
 // Game Menu
@@ -50,15 +48,21 @@ function menu() {
 
 
 class User {
- constructor(keyName, accelData) {
+ constructor(keyName, accelData, widthPos) {
    this.name = keyName;
    this.xPos = accelData.x; 
    this.yPos = accelData.y; 
    this.zPos = accelData.z; 
    
+   this.x = widthPos;
+   
  }
    
   list() {
+    text(username, width/2, height/5);
+    text(input.xPos, width/2, height/4);
+    text(input.yPos, width/2, height/2);
+    text(input.zPos, width/2, height *3/4);
     
   }
 }

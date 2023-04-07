@@ -17,6 +17,10 @@ server.listen(3000, () => {
 
 let printEveryMessage = false; 
 
+
+let numUsers = 0;
+
+
 // Callback function for what to do when our P5.JS sketch connects and sends us messages
 io.on("connection", (socket) => {
   let addedUser = false;
@@ -48,7 +52,7 @@ io.on("connection", (socket) => {
   socket.on("message", (data) => {
 
     //do something
-    socket.broadcast.emit('message', data);//broadcast.emit means send to everyone but the sender
+    socket.broadcast.emit('message', {accelData: data, username: socket.username});//broadcast.emit means send to everyone but the sender
     socket.broadcast.emit('username', socket.username);
 
     
