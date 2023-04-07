@@ -88,7 +88,7 @@ function menu() {
   messageArea = select(".messages");
 
   gui = select("#gui-container");
-  gui.addClass("open");//forcing it open at the start, remove if you want it closed
+  // gui.addClass("open");//forcing it open at the start, remove if you want it closed
 
   button = createButton(">");
   button.addClass("button");
@@ -105,11 +105,11 @@ function menu() {
   usernameInput.addClass("usernameInput");
   usernameInput.input(usernameInputEvent);
 
-  //Chate message input
-  inputMessage = createInput("");
-  inputMessage.parent("#gui-container");
-  inputMessage.addClass("inputMessage");
-  inputMessage.input(chatInputEvent);
+  //Chate message input WE DONT NEED THIS
+  // inputMessage = createInput("");
+  // inputMessage.parent("#gui-container");
+  // inputMessage.addClass("inputMessage");
+  // inputMessage.input(chatInputEvent);
   //type="text" maxlength="14"
   
 }
