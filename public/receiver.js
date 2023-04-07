@@ -28,7 +28,6 @@ function draw() {
   //   users[i].show();
   // }
   
-  // text(username, width/2, height/2);
   
 
 }
@@ -40,7 +39,7 @@ function receiveData() {
   function newData(data) {
     data = data.accelData;
     username = data.username;
-    print(username);
+    print(data.username);
     
   }
   
