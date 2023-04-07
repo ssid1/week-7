@@ -87,14 +87,14 @@ function menu() {
   experiencePage = select("#sketch-container");
   messageArea = select(".messages");
 
-  gui = select("#gui-container");
+  // gui = select("#gui-container");
   // gui.addClass("open");//forcing it open at the start, remove if you want it closed
 
   button = createButton(">");
   button.addClass("button");
 
   //Add the play button to the parent gui HTML element
-  button.parent(gui);
+  // button.parent(gui);
   
   //Adding a mouse pressed event listener to the button 
   button.mousePressed(handleButtonPress); 

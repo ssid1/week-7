@@ -5,16 +5,12 @@ let startButton;
 
 function setup() {
   canvas = createCanvas(500, 500);
-  canvas.parent("sketch-container");
+  // canvas.parent("sketch-container");
   
   input = 0;
   
-  socket.on("message", newMsg);
+  receiveAccel();
 
-  function newMsg(data) {
-    input = data;
-    // console.log(data);
-  }
 }
 
 function draw() { 
@@ -27,8 +23,29 @@ function draw() {
 
 }
 
+function receiveAccel() {
+    socket.on("message", newMsg);
+
+
+  function newMsg(data) {
+    input = data;
+    // console.log(data);
+  }
+}
+
 // Game Menu
 function menu() {
   
 
+}
+
+
+class User {
+ constructor(keyName, accelData) {
+   
+ }
+   
+  list() {
+    
+  }
 }
