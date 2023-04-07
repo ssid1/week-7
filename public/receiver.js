@@ -9,27 +9,27 @@ let users = [];
 function setup() {
   canvas = createCanvas(500, 500);
   // canvas.parent("sketch-container");
+
   
-  input = 0;
-  
-  receiveAccel();
 
 }
 
 function draw() { 
   background( 'pink' );
   
-  // print(username);
-  // text(username, width/2, height/5);
-  // text(input.xPos, width/2, height/4);
-  // text(input.yPos, width/2, height/2);
-  // text(input.zPos, width/2, height *3/4);
+  receiveData();
+  
+  
+  
+  for (i = users.length; i > 0; i--) {
+    users[i].show();
+  }
 
 }
 
-function receiveAccel() {
-    socket.on("message", newData);
-
+function receiveData() {
+  socket.on("message", newData);
+  socket.on();
 
   function newData(data) {
     input = data.accelData;
@@ -55,14 +55,16 @@ class User {
    this.zPos = accelData.z; 
    
    this.x = widthPos;
+   this.h = height/5;
    
  }
    
   list() {
-    text(username, width/2, height/5);
-    text(input.xPos, width/2, height/4);
-    text(input.yPos, width/2, height/2);
-    text(input.zPos, width/2, height *3/4);
+    textSize(height/30);
+    text(this.name, this.x, this.h);
+    text(this.xPos, this.x, this.h*2);
+    text(this.yPos, this.x, this.h*3);
+    text(this.zPos, this.x, this.h*4);
     
   }
 }
