@@ -23,3 +23,26 @@ function draw() {
   text(input.zPos, width/2, height *3/4);
 
 }
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+
+
+
+
+socket.on('disconnect', () => {
+  addLogElement('you have been disconnected');
+});
+
+socket.io.on('reconnect', () => {
+  addLogElement('you have been reconnected');
+  if (username) {
+    socket.emit('add user', username);
+  }
+});
+
+socket.io.on('reconnect_error', () => {
+  addLogElement('attempt to reconnect has failed');
+});
