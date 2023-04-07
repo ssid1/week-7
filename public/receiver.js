@@ -3,6 +3,8 @@ let canvas, input;
 
 let startButton;
 
+let users = [];
+
 function setup() {
   canvas = createCanvas(500, 500);
   // canvas.parent("sketch-container");
@@ -42,6 +44,10 @@ function menu() {
 
 class User {
  constructor(keyName, accelData) {
+   this.name = keyName;
+   this.xPos = accelData.x; 
+   this.yPos = accelData.y; 
+   this.zPos = accelData.z; 
    
  }
    
