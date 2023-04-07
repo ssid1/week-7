@@ -1,10 +1,11 @@
 const socket = io();
-let input;
+let canvas, input;
 
 let startButton;
 
 function setup() {
-  createCanvas(500, 500);
+  canvas = createCanvas(500, 500);
+  canvas.parent("sketch-container");
   
   input = 0;
   
