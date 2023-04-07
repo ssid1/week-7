@@ -54,7 +54,7 @@ function receiveData() {
   
   for (let i = 0; i <= users.length; i++) {
     if (username != users[i]) {
-      // users.push(username);
+      let u = new User(username, input)
     }
   }
   
@@ -79,7 +79,8 @@ class User {
    this.yPos = accelData.y; 
    this.zPos = accelData.z; 
    
-   this.x = widthPos;
+   this.x = width/2;
+   // this.x = widthPos;
    this.h = height/5;
    
  }
