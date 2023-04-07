@@ -10,7 +10,6 @@ function setup() {
   canvas = createCanvas(500, 500);
   // canvas.parent("sketch-container");
   
-  currentUsers = 0;
 
   
 
@@ -22,6 +21,8 @@ function draw() {
   receiveData();
      // console.log(currentUsers);
   
+  console.log(users);
+  
   
   // for (i = users.length; i > 0; i--) {
   //   users[i].show();
@@ -31,18 +32,24 @@ function draw() {
 
 function receiveData() {
   socket.on("message", newData);
-  socket.on('connected', newLogin);
+  // socket.on('connected', newLogin); DELETE
 
   function newData(data) {
     input = data.accelData;
     username = data.username;
-  }
-  
-  function newLogin(data) {
-    currentUsers = data;
-    console.Log(data)
+      users.push[data.username];
     
   }
+  
+  for (let i = 0; i < users.length; i++) {
+    if (username != users[i]) {
+    }
+  }
+  
+  // function newLogin(data) { DELETE
+  //   currentUsers = data;
+  //   console.Log(data)
+  // }
 
 }
 
