@@ -57,7 +57,7 @@ io.on("connection", (socket) => {
 
     // Print it to the Console
     if (printEveryMessage) {
-      socket.emit(data);
+      // socket.emit(data);
     }
   });
 

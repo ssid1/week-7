@@ -1,5 +1,5 @@
 const socket = io();
-let canvas, data, username, prover, currentUsers;
+let canvas, input, username, prover, currentUsers;
 
 
 let startButton;
@@ -37,9 +37,9 @@ function receiveData() {
   // socket.on('connected', newLogin); DELETE
 
   function newData(data) {
-    data = data.accelData;
+    input = data.accelData;
     username = data.username;
-    print(data.username);
+    console.log(input);
     
   }
   
