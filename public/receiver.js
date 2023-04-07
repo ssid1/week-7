@@ -1,5 +1,5 @@
 const socket = io();
-let canvas, input, username;
+let canvas, input, username, prover;
 
 
 let startButton;
@@ -29,13 +29,18 @@ function draw() {
 
 function receiveData() {
   socket.on("message", newData);
-  socket.on();
+  socket.on("connected", newProof);
 
   function newData(data) {
     input = data.accelData;
     username = data.username;
     // console.log(username);
     // console.log(input);
+  }
+  
+  function newProof(proof) {
+    // prover = proof;
+    // console.log(username + " connnected");
   }
 
 }

@@ -25,6 +25,10 @@ let numUsers = 0;
 io.on("connection", (socket) => {
   let addedUser = false;
   
+  socket.on("connected", (proof) => {
+        socket.broadcast.emit('proof', true);
+
+  });
   
   
   // console.log("a user connected");
@@ -52,13 +56,12 @@ io.on("connection", (socket) => {
   socket.on("message", (data) => {
 
     //do something
-    socket.broadcast.emit('message', {accelData: data, username: socket.username});//broadcast.emit means send to everyone but the sender
-    socket.broadcast.emit('username', socket.username);
+    socket.emit('message', {accelData: data, username: socket.username});//broadcast.emit means send to everyone but the sender
 
     
     // Print it to the Console
     if (printEveryMessage) {
-      socket.broadcast.emit(data);
+      socket.emit(data);
     }
   });
   
