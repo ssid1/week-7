@@ -1,5 +1,5 @@
 const socket = io();
-let canvas, input, username, prover;
+let canvas, input, username, prover, currentUsers;
 
 
 let startButton;
@@ -9,6 +9,8 @@ let users = [];
 function setup() {
   canvas = createCanvas(500, 500);
   // canvas.parent("sketch-container");
+  
+  currentUsers = 0;
 
   
 
@@ -18,29 +20,27 @@ function draw() {
   background( 'pink' );
   
   receiveData();
+     console.log(currentUsers);
   
   
-  
-  for (i = users.length; i > 0; i--) {
-    users[i].show();
-  }
+  // for (i = users.length; i > 0; i--) {
+  //   users[i].show();
+  // }
 
 }
 
 function receiveData() {
   socket.on("message", newData);
-  socket.on("connected", newProof);
+  socket.on('connected', newLogin);
 
   function newData(data) {
     input = data.accelData;
     username = data.username;
-    // console.log(username);
-    // console.log(input);
   }
   
-  function newProof(proof) {
-    // prover = proof;
-    // console.log(username + " connnected");
+  function newLogin(numUsers) {
+    currentUsers = numUsers;
+    
   }
 
 }

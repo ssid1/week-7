@@ -25,8 +25,8 @@ let numUsers = 0;
 io.on("connection", (socket) => {
   let addedUser = false;
   
-  socket.on("connected", (proof) => {
-        socket.broadcast.emit('proof', true);
+  socket.on('connected', (data) => {
+        socket.broadcast.emit('connected', numUsers);
 
   });
   
