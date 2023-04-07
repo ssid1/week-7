@@ -10,6 +10,8 @@ var xpos, ypos;
 
 function setup() {
   canvas = createCanvas(500, 500);
+  
+  menu();
     
   //set styling for the sketch
   noStroke();
@@ -31,7 +33,6 @@ window.addEventListener('devicemotion', function(e)
 
 function draw() {
   background(255);
-
   
   // add/subract xpos and ypos
   xpos = xpos + x;
@@ -63,17 +64,63 @@ function draw() {
 
 // Game Menu
 function menu() {
+  loginPage = select("#login");
+  experiencePage = select("#sketch-container");
+  messageArea = select(".messages");
+
+  gui = select("#gui-container");
+  gui.addClass("open");//forcing it open at the start, remove if you want it closed
+
+  button = createButton(">");
+  button.addClass("button");
+
+  //Add the play button to the parent gui HTML element
+  button.parent(gui);
   
+  //Adding a mouse pressed event listener to the button 
+  button.mousePressed(handleButtonPress); 
+
+  //username input
+  usernameInput = createInput("");
+  usernameInput.parent("#login-form");
+  usernameInput.addClass("usernameInput");
+  usernameInput.input(usernameInputEvent);
+
+  //Chate message input
+  inputMessage = createInput("");
+  inputMessage.parent("#gui-container");
+  inputMessage.addClass("inputMessage");
+  inputMessage.input(chatInputEvent);
+  //type="text" maxlength="14"
   
+}
+
+// Sets the client's username
+function setUsername(){
+  username = cleanInput(usernameInput.value().trim());
+
+  // If the username is valid
+  if (username) {
+    loginPage.addClass("hide");
+    experiencePage.removeClass("hide");
+ 
+    // $currentInput = $inputMessage.focus();
+
+    // Tell the server your username
+    socket.emit('add user', username);
+  }
+}
+
+function usernameInputEvent(){
+  console.log(this.value());
+}
+
+function chatInputEvent(){
+  console.log(this.value());
 }
 
 
 
-
-// Web Responsivity
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
 
 
 
@@ -96,5 +143,11 @@ socket.on("data",(data) => {
   drawEvent(data);
   
 });
+
+
+// Web Responsivity
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
 
 

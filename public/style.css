@@ -74,13 +74,8 @@ main{
 
 html, input {
   font-family:
-    "HelveticaNeue-Light",
-    "Helvetica Neue Light",
-    "Helvetica Neue",
-    Helvetica,
-    Arial,
-    "Lucida Grande",
-    sans-serif;
+    "Courier New",
+    monospace;
 }
 
 html, body {
