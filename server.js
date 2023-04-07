@@ -27,7 +27,6 @@ io.on("connection", (socket) => {
   
   socket.on('connected', (data) => {
         socket.broadcast.emit('connected', numUsers);
-
   });
   
   
@@ -42,9 +41,7 @@ io.on("connection", (socket) => {
     socket.username = username;
     ++numUsers;
     addedUser = true;
-    socket.emit('login', {
-      numUsers: numUsers
-    });
+    socket.emit('login', numUsers);
     // echo globally (all clients) that a person has connected
     socket.broadcast.emit('user joined', {
       username: socket.username,
@@ -57,7 +54,6 @@ io.on("connection", (socket) => {
 
     //do something
     socket.emit('message', {accelData: data, username: socket.username});//broadcast.emit means send to everyone but the sender
-
     
     // Print it to the Console
     if (printEveryMessage) {

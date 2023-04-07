@@ -20,7 +20,7 @@ function draw() {
   background( 'pink' );
   
   receiveData();
-     console.log(currentUsers);
+     // console.log(currentUsers);
   
   
   // for (i = users.length; i > 0; i--) {
@@ -38,8 +38,9 @@ function receiveData() {
     username = data.username;
   }
   
-  function newLogin(numUsers) {
-    currentUsers = numUsers;
+  function newLogin(data) {
+    currentUsers = data;
+    console.Log(data)
     
   }
 
