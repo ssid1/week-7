@@ -1,6 +1,8 @@
 const socket = io();
 let input;
 
+let startButton;
+
 function setup() {
   createCanvas(500, 500);
   
@@ -24,25 +26,8 @@ function draw() {
 
 }
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+// Game Menu
+function menu() {
+  
+
 }
-
-
-
-
-
-socket.on('disconnect', () => {
-  addLogElement('you have been disconnected');
-});
-
-socket.io.on('reconnect', () => {
-  addLogElement('you have been reconnected');
-  if (username) {
-    socket.emit('add user', username);
-  }
-});
-
-socket.io.on('reconnect_error', () => {
-  addLogElement('attempt to reconnect has failed');
-});

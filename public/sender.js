@@ -59,6 +59,24 @@ function draw() {
   socket.emit('message', data)
 }
 
+
+
+// Game Menu
+function menu() {
+  
+  
+}
+
+
+
+
+// Web Responsivity
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+
+
 //Events we are listening for
 
 // Connect to Node.JS Server
