@@ -25,8 +25,9 @@ let numUsers = 0;
 io.on("connection", (socket) => {
   let addedUser = false;
   
-  socket.on('connected', (data) => {
-        socket.broadcast.emit('connected', numUsers);
+  socket.on("connected", (data) => {
+        socket.broadcast.emit('userNum', numUsers);
+
   });
   
   
@@ -41,7 +42,9 @@ io.on("connection", (socket) => {
     socket.username = username;
     ++numUsers;
     addedUser = true;
-    socket.emit('login', numUsers);
+    socket.emit('login', {
+      numUsers: numUsers
+    });
     // echo globally (all clients) that a person has connected
     socket.broadcast.emit('user joined', {
       username: socket.username,
@@ -51,9 +54,10 @@ io.on("connection", (socket) => {
   
   // Code to run every time we get a message from front-end P5.JS
   socket.on("message", (data) => {
-
+    // console.log(soc);
     //do something
     socket.emit('message', {accelData: data, username: socket.username});//broadcast.emit means send to everyone but the sender
+
     
     // Print it to the Console
     if (printEveryMessage) {

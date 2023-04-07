@@ -1,5 +1,5 @@
 const socket = io();
-let canvas, input, username, prover, currentUsers;
+let canvas, data, username, prover, currentUsers;
 
 
 let startButton;
@@ -21,12 +21,15 @@ function draw() {
   receiveData();
      // console.log(currentUsers);
   
-  console.log(users);
+  // console.log(users);
   
   
   // for (i = users.length; i > 0; i--) {
   //   users[i].show();
   // }
+  
+  // text(username, width/2, height/2);
+  
 
 }
 
@@ -35,16 +38,16 @@ function receiveData() {
   // socket.on('connected', newLogin); DELETE
 
   function newData(data) {
-    input = data.accelData;
+    data = data.accelData;
     username = data.username;
-      users.push[data.username];
+    print(username);
     
   }
   
-  for (let i = 0; i < users.length; i++) {
-    if (username != users[i]) {
-    }
-  }
+  // for (let i = 0; i < users.length; i++) {
+  //   if (username != users[i]) {
+  //   }
+  // }
   
   // function newLogin(data) { DELETE
   //   currentUsers = data;
