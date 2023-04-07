@@ -117,8 +117,8 @@ class User {
    this.yPos = dataInput.yPos; 
    this.zPos = dataInput.zPos; 
     
-  this.x = width/findIndex(users, this.User);
-    print(this.User);
+  // this.x = width/findIndex(users, this.User);
+    // print(this.User);
     
   }
   
