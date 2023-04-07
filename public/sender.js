@@ -153,6 +153,11 @@ function chatInputEvent(){
   console.log(this.value());
 }
 
+function handleButtonPress()
+{
+    gui.toggleClass("open");
+}
+
 function getUsernameColor(username){
   // Compute hash code
   let hash = 7;
@@ -180,18 +185,7 @@ function keyPressed(){
   
 }
 
-function usernameInputEvent(){
-  console.log(this.value());
-}
 
-function chatInputEvent(){
-  console.log(this.value());
-}
-
-function handleButtonPress()
-{
-    gui.toggleClass("open");
-}
 
 
 
@@ -209,11 +203,19 @@ socket.on("disconnect", () => {
 
 //Add Callback for drawing message
 
+
+function cleanInput(input){
+  //remove all html tags, so no one can mess with your system
+  let clean = input.replace( /(<([^>]+)>)/ig, '');
+  return clean;
+}
+
 socket.on("data",(data) => {
   
   drawEvent(data);
   
 });
+
 
 
 // Web Responsivity

@@ -19,6 +19,10 @@ let printEveryMessage = false;
 
 // Callback function for what to do when our P5.JS sketch connects and sends us messages
 io.on("connection", (socket) => {
+  let addedUser = false;
+  
+  
+  
   console.log("a user connected");
 
   // Code to run every time we get a message from front-end P5.JS
