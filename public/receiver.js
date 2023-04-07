@@ -5,6 +5,8 @@ let activeUsers = [];
 
 let startButton;
 
+let positioning = 0;
+
 let users = [];
 
 function setup() {
@@ -27,6 +29,8 @@ function draw() {
   
   
   for (let i = currentUsers - 1; i >= 0; i--) {
+    users[i].update();
+
     users[i].list();
   }
   
@@ -82,6 +86,8 @@ function menu() {
 
 }
 
+function layout() {
+}
 
 class User {
  constructor(keyName, accelData) {
@@ -107,8 +113,17 @@ class User {
   }
   
   update() {
-    this.xPos = accelData.xPos;
-   this.yPos = accelData.yPos; 
-   this.zPos = accelData.zPos; 
+   this.xPos = dataInput.xPos;
+   this.yPos = dataInput.yPos; 
+   this.zPos = dataInput.zPos; 
+    
+  this.x = width/findIndex(users, this.User);
+    print(this.User);
+    
+  }
+  
+  postion() {
+    for (let i = 0; i < users.length; i++) {
+    }
   }
 }
