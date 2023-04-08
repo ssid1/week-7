@@ -54,6 +54,12 @@ window.addEventListener('devicemotion', function(e)
   x = parseInt(e.accelerationIncludingGravity.x);
   y = parseInt(e.accelerationIncludingGravity.y);
   z = parseInt(e.accelerationIncludingGravity.z); 
+  
+  let threshold = 10
+  
+    if (x >= threshold || y >= 20 || z >= 20) {
+    navigator.vibrate(1000);
+  }
 });
 
 function draw() {
@@ -82,10 +88,23 @@ function draw() {
     zPos: z,
   }
   
-  socket.emit('message', data)
+  socket.emit('message', data);
+  
+  
+  
+  // button = createButton('buzz');
+  // button.position(width/2, height/2);
+  // button.mousePressed(  navigator.vibrate(1000)); // WORKS!
+  
+  averager(data);
 }
 
 
+function averager(data) {
+  // let average = (x + y + z)/3;
+
+  
+}
 
 // Game Menu
 function menu() {
@@ -96,15 +115,13 @@ function menu() {
   // gui = select("#gui-container");
   // gui.addClass("open");//forcing it open at the start, remove if you want it closed
 
-  button = createButton(">");
-  button.addClass("button");
+  // button = createButton(">");
+  // button.addClass("button");
 
   //Add the play button to the parent gui HTML element
   // button.parent(gui);
   
-  //Adding a mouse pressed event listener to the button 
-  button.mousePressed(  navigator.vibrate(500)
-); 
+  //Adding a mouse pressed event listener to the button  
 
   //username input
   usernameInput = createInput("");
