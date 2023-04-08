@@ -31,9 +31,13 @@ var x, y, z;
 
 function setup() {
   canvas = createCanvas(500, 500);
-  navigator.vibrate = navigator.vibrate ||
+  navigator.vibrate = navigator.vibrate || 
+                      navigator.webkitVibrate ||
+                      navigator.mozVibrate ||
+                      navigator.msVibrate;
   
   menu();
+  navigator.vibrate(500);
     
   //set styling for the sketch
   noStroke();
