@@ -27,8 +27,11 @@ let drawIsOn = false;
 
 var x, y, z;
 
+
+
 function setup() {
   canvas = createCanvas(500, 500);
+  navigator.vibrate = navigator.vibrate ||
   
   menu();
     
