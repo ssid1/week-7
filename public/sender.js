@@ -55,9 +55,12 @@ window.addEventListener('devicemotion', function(e)
   y = parseInt(e.accelerationIncludingGravity.y);
   z = parseInt(e.accelerationIncludingGravity.z); 
   
-  let threshold = 10
+  let threshold = 5
   
-    if (x >= threshold || y >= 20 || z >= 20) {
+    if (x >= threshold ||  // change to SPEED not ANGLE
+        x <= -threshold || 
+        z >= threshold ||
+        z <= -threshold) {
     navigator.vibrate(1000);
   }
 });
