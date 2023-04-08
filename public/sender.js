@@ -37,7 +37,6 @@ function setup() {
                       navigator.msVibrate;
   
   menu();
-  navigator.vibrate(500);
     
   //set styling for the sketch
   noStroke();
@@ -104,7 +103,8 @@ function menu() {
   // button.parent(gui);
   
   //Adding a mouse pressed event listener to the button 
-  button.mousePressed(handleButtonPress); 
+  button.mousePressed(  navigator.vibrate(500)
+); 
 
   //username input
   usernameInput = createInput("");
