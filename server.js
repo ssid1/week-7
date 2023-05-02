@@ -51,10 +51,11 @@ io.on("connection", (socket) => {
     
   });
 
+    // JAY TAKE NOTE
   // Code to run every time we get a message from front-end P5.JS
   socket.on("message", (data) => {
     
-    
+      // JAY TAKE NOTE
     //do something
     socket.broadcast.emit("message", { accelData: data, username: socket.username, users: numUsers }); //broadcast.emit means send to everyone but the sender
     console.log(numUsers);

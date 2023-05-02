@@ -39,10 +39,12 @@ function draw() {
 }
 
 function receiveData() {
+  
+    // JAY TAKE NOTE
   socket.on("message", newData);
-  // socket.on("add user", newLogin);
-  // socket.on('connected', newLogin); DELETE
 
+  
+  // JAY TAKE NOTE
   function newData(data) {
     dataInput = data.accelData;
     username = data.username;

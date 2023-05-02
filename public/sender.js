@@ -85,12 +85,13 @@ function draw() {
     text("y: " + y, 25, 50);
     text("z: " + z, 25, 75); 
   
+    // JAY TAKE NOTE
   let data = {
     xPos: x,
     yPos: y,
     zPos: z,
   }
-  
+    // JAY TAKE NOTE
   socket.emit('message', data);
   
   
